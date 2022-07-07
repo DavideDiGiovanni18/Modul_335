@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:travel_planner/pages/profilePage.dart';
 import 'package:travel_planner/pages/travelPage.dart';
+import 'package:travel_planner/pages/tripsPage.dart';
 
 class TravelStartPage extends StatefulWidget {
   _travel createState() => _travel();
@@ -11,8 +12,8 @@ class _travel extends State<TravelStartPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 60,
-        backgroundColor: Colors.cyan,
+        toolbarHeight: 70,
+        backgroundColor: Colors.brown[200],
         title: Center(child: Text("Trip-Planner")),
         leading: Builder(builder: (BuildContext context) {
           //left side
@@ -32,7 +33,7 @@ class _travel extends State<TravelStartPage> {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) {
-                  return TravelPage();
+                  return TripsPage();
                 }),
               );
             },
@@ -46,18 +47,14 @@ class _travel extends State<TravelStartPage> {
             Container(
               child: Text(
                 "Welcome: Davide",
-                style: TextStyle(fontSize: 40, color: Colors.blue),
+                style: TextStyle(
+                    fontSize: 40,
+                    color: Colors.brown[400],
+                    fontWeight: FontWeight.bold),
               ),
               padding: EdgeInsets.all(5),
             ),
-            SizedBox(height: 10),
-            Container(
-              child: Text(
-                "From: ",
-                style: TextStyle(fontSize: 20, color: Colors.blue),
-              ),
-            ),
-            SizedBox(height: 40),
+            SizedBox(height: 30),
             Container(
                 width: 180,
                 height: 60,
@@ -66,9 +63,12 @@ class _travel extends State<TravelStartPage> {
                   onPressed: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
-                      return TravelPage();
-                    }));
+                          return TravelPage();
+                        }));
                   },
+                  style: ButtonStyle(
+                      backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.brown)),
                 )),
             SizedBox(height: 30),
             Container(
@@ -79,9 +79,12 @@ class _travel extends State<TravelStartPage> {
                   onPressed: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
-                      return TravelPage();
-                    }));
+                          return TripsPage();
+                        }));
                   },
+                  style: ButtonStyle(
+                      backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.brown)),
                 )),
           ],
         ),

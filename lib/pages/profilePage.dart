@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:travel_planner/model/profile.dart';
 import 'package:travel_planner/pages/travelPage.dart';
 import 'package:travel_planner/pages/travelStartPage.dart';
+import 'package:travel_planner/pages/tripsPage.dart';
 
 class ProfilePage extends StatefulWidget {
   _profile createState() => _profile();
@@ -25,7 +26,7 @@ class _profile extends State<ProfilePage> {
     return Scaffold(
         appBar: AppBar(
           toolbarHeight: 60,
-          backgroundColor: Colors.cyan,
+          backgroundColor: Colors.brown[200],
           title: Center(child: Text("Profile")),
           leading: Builder(builder: (BuildContext context) {
             //left side
@@ -45,7 +46,7 @@ class _profile extends State<ProfilePage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) {
-                    return TravelPage();
+                    return TripsPage();
                   }),
                 );
               },
@@ -58,7 +59,7 @@ class _profile extends State<ProfilePage> {
                   Image.asset('assets/images/profile.png', height: 400,
                     width: 300,),
                   Text(name.getName(),style: TextStyle(
-                    fontSize: 30,
+                      fontSize: 30
                   ),),
                   ElevatedButton(onPressed: () async {
                     _isServiceEnabled = await location.serviceEnabled();
@@ -76,10 +77,10 @@ class _profile extends State<ProfilePage> {
                     setState(() {
                       _isGeoLocation = true;
                     });
-                  },
-                    child: Text("Show your Current Location")),_isGeoLocation ? Text(
-                        'Location: ${_locationData.latitude}/${_locationData
-                            .longitude}') : Container(),
+                  }, style:ButtonStyle(backgroundColor:MaterialStateProperty.all<Color>(Colors.brown)),
+                      child: Text("Show your Current Location")),_isGeoLocation ? Text(
+                    'Your Location: ${_locationData.latitude}/${_locationData
+                        .longitude}', style: TextStyle(fontSize: 20, height: 2, color: Colors.brown),) : Container(),
                 ])));
   }
 }
