@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:location/location.dart';
 import 'package:provider/provider.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:travel_planner/model/location.dart';
 import 'package:travel_planner/model/profile.dart';
 import 'package:travel_planner/pages/travelStartPage.dart';
@@ -13,8 +13,8 @@ class ProfilePage extends StatefulWidget {
 class _profile extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
-    var name = Provider.of<Profile>(context);
-    var loc = Provider.of<Locationn>(context);
+    var name = Provider.of<Profile>(context); //profile information
+    var loc = Provider.of<Locationn>(context); //location information
 
     return Scaffold(
         appBar: AppBar(
@@ -59,6 +59,8 @@ class _profile extends State<ProfilePage> {
           ),
           ElevatedButton(
               onPressed: () async {
+                final i = AudioPlayer();
+                i.play(DeviceFileSource("assets/sound/robot.mp3"));
                 loc.locationMethod();
                 setState(() {
                   loc.getIsGeoLocation();
@@ -68,7 +70,7 @@ class _profile extends State<ProfilePage> {
                   backgroundColor:
                       MaterialStateProperty.all<Color>(Colors.brown)),
               child: Text("Show your Current Location")),
-          loc.getIsGeoLocation()//falls Location herausgefunden
+          loc.getIsGeoLocation() //falls Location herausgefunden
               ? Text(
                   'Your Location: Latitude ${loc.getLatitude()}/ Longitude ${loc.getLongitude()}',
                   style:

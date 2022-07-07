@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:travel_planner/model/profile.dart';
 import 'package:travel_planner/pages/profilePage.dart';
-import 'package:travel_planner/pages/travelPage.dart';
+import 'package:travel_planner/pages/createTripPage.dart';
 import 'package:travel_planner/pages/tripsPage.dart';
 
 class TravelStartPage extends StatefulWidget {
@@ -8,8 +10,11 @@ class TravelStartPage extends StatefulWidget {
 }
 
 class _travel extends State<TravelStartPage> {
+
   @override
   Widget build(BuildContext context) {
+    var profil = Provider.of<Profile>(context);//
+    // profile information
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 70,
@@ -46,9 +51,9 @@ class _travel extends State<TravelStartPage> {
           children: <Widget>[
             Container(
               child: Text(
-                "Welcome: Davide",
+                "Welcome: "+profil.getName(),
                 style: TextStyle(
-                    fontSize: 40,
+                    fontSize: 30,
                     color: Colors.brown[400],
                     fontWeight: FontWeight.bold),
               ),
@@ -63,7 +68,7 @@ class _travel extends State<TravelStartPage> {
                   onPressed: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
-                          return TravelPage();
+                          return CreateTripPage();
                         }));
                   },
                   style: ButtonStyle(

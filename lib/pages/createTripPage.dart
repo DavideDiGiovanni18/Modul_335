@@ -1,26 +1,25 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:weekly_date_picker/weekly_date_picker.dart';
+import 'package:country_state_city_picker/country_state_city_picker.dart';
 import 'package:travel_planner/model/trip.dart';
 import 'package:travel_planner/model/trips.dart';
 import 'package:travel_planner/pages/profilePage.dart';
 import 'package:travel_planner/pages/tripspage.dart';
-import 'package:country_state_city_picker/country_state_city_picker.dart';
-import 'package:weekly_date_picker/weekly_date_picker.dart';
 
 
-class TravelPage extends StatefulWidget {
+class CreateTripPage extends StatefulWidget {
   _travel createState() => _travel();
 }
 
-class _travel extends State<TravelPage> {
+class _travel extends State<CreateTripPage> {
   String countryValue = "";
   String stateValue = "";
   String cityValue = "";
   var _selectedDay = DateTime.now();
-
   final informationController = TextEditingController();
-  Trip trips = Trip();
+  Trip trips = Trip();//Initialize Data for the Trip
 
   @override
   void dispose() {
@@ -70,23 +69,24 @@ class _travel extends State<TravelPage> {
               width: double.infinity,
               decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage("assets/images/travel.jpg"),
-                    fit: BoxFit.cover,
-                  )),
+                image: AssetImage("assets/images/travel.jpg"),
+                fit: BoxFit.cover,
+              )),
               child: Center(
                   child: Text("Travel",
                       style: TextStyle(
                           fontSize: 50,
-                          fontFamily: 'DancingScript',
+                          fontFamily: 'DancingScript', //own font
                           color: Colors.white))),
             ),
             Center(
                 child: Text(
-                  "Choose you Date",
-                  style: TextStyle(
-                      fontSize: 18, fontWeight: FontWeight.bold, height: 3),
-                )),
+              "Choose your Date",
+              style: TextStyle(
+                  fontSize: 18, fontWeight: FontWeight.bold, height: 3),
+            )),
             WeeklyDatePicker(
+              //Package
               selectedDay: _selectedDay, // DateTime
               changeDay: (value) => setState(() {
                 _selectedDay = value;
@@ -94,29 +94,32 @@ class _travel extends State<TravelPage> {
             ),
             Center(
                 child: Text(
-                  "Your Prefered Location",
-                  style: TextStyle(
-                      fontSize: 18, fontWeight: FontWeight.bold, height: 3),
-                )),
+              "Your Prefered Location",
+              style: TextStyle(
+                  fontSize: 18, fontWeight: FontWeight.bold, height: 3),
+            )),
             SelectState(onCountryChanged: (value) {
+              //Package
               setState(() {
-                countryValue = value;
+                countryValue = value; //Land
               });
             }, onStateChanged: (value) {
+              //Kanton/Region
               setState(() {
                 stateValue = value;
               });
             }, onCityChanged: (value) {
+              //Stadt
               setState(() {
                 cityValue = value;
               });
             }),
             Center(
                 child: Text(
-                  "Your Text",
-                  style: TextStyle(
-                      fontSize: 18, fontWeight: FontWeight.bold, height: 2),
-                )),
+              "Your Text",
+              style: TextStyle(
+                  fontSize: 18, fontWeight: FontWeight.bold, height: 2),
+            )),
             SizedBox(height: 5),
             TextField(
                 controller: informationController,
@@ -134,10 +137,11 @@ class _travel extends State<TravelPage> {
                     child: ElevatedButton(
                       onPressed: () async {
                         final i = AudioPlayer();
-                        i.play(
+                        i.play(//Confirmation Sound
                             DeviceFileSource("assets/sound/confirmation.mp3"));
 
-                        if (countryValue.isNotEmpty) {
+                        if (countryValue.isNotEmpty) {//take data from Form
+                          //if not empty
                           if (stateValue.isEmpty) {
                             stateValue = "Keine Angabe";
                           }
@@ -158,8 +162,8 @@ class _travel extends State<TravelPage> {
 
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
-                              return TripsPage();
-                            }));
+                          return TripsPage();
+                        }));
                       },
                       child: Text("add",
                           style: TextStyle(
@@ -167,7 +171,7 @@ class _travel extends State<TravelPage> {
                           )),
                       style: ButtonStyle(
                         backgroundColor:
-                        MaterialStateProperty.all<Color>(Colors.brown),
+                            MaterialStateProperty.all<Color>(Colors.brown),
                       ),
                     )))
           ],
