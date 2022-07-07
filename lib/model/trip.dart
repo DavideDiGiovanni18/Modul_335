@@ -18,24 +18,24 @@ class Trip extends ChangeNotifier {
     return datum.day.toString() +"."+datum.month.toString()+"."+datum.year.toString();
   }
 
-  setCountry(String count) {
-    this.country = count;
+  setCountry(String c) {
+    this.country = c;
   }
 
   String getCountry() {
     return country;
   }
 
-  setState(String statee) {
-    this.state = statee;
+  setState(String s) {
+    this.state = s;
   }
 
   String getState() {
     return state;
   }
 
-  setCity(String cityy) {
-    this.city = cityy;
+  setCity(String c) {
+    this.city = c;
   }
 
   String getCity() {

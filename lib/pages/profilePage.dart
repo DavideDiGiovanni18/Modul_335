@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:location/location.dart';
 import 'package:provider/provider.dart';
+import 'package:travel_planner/model/location.dart';
 import 'package:travel_planner/model/profile.dart';
-import 'package:travel_planner/pages/travelPage.dart';
 import 'package:travel_planner/pages/travelStartPage.dart';
 import 'package:travel_planner/pages/tripsPage.dart';
 
@@ -11,17 +11,10 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _profile extends State<ProfilePage> {
-
-  Location location = new Location();
-  late bool _isServiceEnabled;
-  late LocationData _locationData;
-  late PermissionStatus _permissionStatus;
-  bool _isGeoLocation = false;
-
-
   @override
   Widget build(BuildContext context) {
     var name = Provider.of<Profile>(context);
+    var loc = Provider.of<Locationn>(context);
 
     return Scaffold(
         appBar: AppBar(
@@ -54,33 +47,34 @@ class _profile extends State<ProfilePage> {
           ],
         ),
         body: Center(
-            child: Column(
-                children: [
-                  Image.asset('assets/images/profile.png', height: 400,
-                    width: 300,),
-                  Text(name.getName(),style: TextStyle(
-                      fontSize: 30
-                  ),),
-                  ElevatedButton(onPressed: () async {
-                    _isServiceEnabled = await location.serviceEnabled();
-                    if (!_isServiceEnabled) {
-                      _isServiceEnabled = await location.requestService();
-                      if (_isServiceEnabled) return;
-                    }
-
-                    _permissionStatus = await location.requestPermission();
-                    if (_permissionStatus == PermissionStatus.denied) {
-                      _permissionStatus = await location.requestPermission();
-                      if (_isServiceEnabled != PermissionStatus.granted) return;
-                    }
-                    _locationData = await location.getLocation();
-                    setState(() {
-                      _isGeoLocation = true;
-                    });
-                  }, style:ButtonStyle(backgroundColor:MaterialStateProperty.all<Color>(Colors.brown)),
-                      child: Text("Show your Current Location")),_isGeoLocation ? Text(
-                    'Your Location: ${_locationData.latitude}/${_locationData
-                        .longitude}', style: TextStyle(fontSize: 20, height: 2, color: Colors.brown),) : Container(),
-                ])));
+            child: Column(children: [
+          Image.asset(
+            'assets/images/profile.png',
+            height: 400,
+            width: 300,
+          ),
+          Text(
+            name.getName(),
+            style: TextStyle(fontSize: 30),
+          ),
+          ElevatedButton(
+              onPressed: () async {
+                loc.locationMethod();
+                setState(() {
+                  loc.getIsGeoLocation();
+                });
+              },
+              style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.brown)),
+              child: Text("Show your Current Location")),
+          loc.getIsGeoLocation()//falls Location herausgefunden
+              ? Text(
+                  'Your Location: Latitude ${loc.getLatitude()}/ Longitude ${loc.getLongitude()}',
+                  style:
+                      TextStyle(fontSize: 20, height: 2, color: Colors.brown),
+                )
+              : Container(),
+        ])));
   }
 }

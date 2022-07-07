@@ -1,6 +1,7 @@
 //dart=2.9
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:travel_planner/model/location.dart';
 
 import 'package:travel_planner/model/profile.dart';
 import 'package:travel_planner/model/trips.dart';
@@ -22,7 +23,9 @@ class MyApp extends StatelessWidget {
         create: (_) => Profile(),
       ),
       ChangeNotifierProvider(
-          create: (_) => Trips())
+          create: (_) => Trips()),
+      ChangeNotifierProvider(
+          create: (_) => Locationn()),
     ],
         child: MaterialApp(
           title: 'Travel Planner',
