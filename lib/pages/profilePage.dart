@@ -74,7 +74,7 @@ class _profile extends State<ProfilePage> {
               ? Text(
                   'Your Location: Latitude ${loc.getLatitude()}/ Longitude ${loc.getLongitude()}',
                   style:
-                      TextStyle(fontSize: 20, height: 2, color: Colors.brown),
+                      TextStyle(fontSize: 18, height: 2, color: Colors.brown),
                 )
               : Container(),
         ])));

@@ -50,6 +50,11 @@ class _travel extends State<TravelStartPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Container(
+              height: 230,
+              width: 230,
+              child: Image.asset("assets/images/logoApp.png")
+            ),
+            Container(
               child: Text(
                 "Welcome: "+profil.getName(),
                 style: TextStyle(
