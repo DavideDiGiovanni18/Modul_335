@@ -10,16 +10,15 @@ class TravelStartPage extends StatefulWidget {
 }
 
 class _travel extends State<TravelStartPage> {
-
   @override
   Widget build(BuildContext context) {
-    var profil = Provider.of<Profile>(context);//
+    var profil = Provider.of<Profile>(context); //
     // profile information
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 70,
         backgroundColor: Colors.brown[200],
-        title: Center(child: Text("Trip-Planner")),
+        title: Center(child: Text("Travel-Planner")),
         leading: Builder(builder: (BuildContext context) {
           //left side
           return IconButton(
@@ -50,13 +49,12 @@ class _travel extends State<TravelStartPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Container(
-              height: 230,
-              width: 230,
-              child: Image.asset("assets/images/logoApp.png")
-            ),
+                height: 230,
+                width: 230,
+                child: Image.asset("assets/images/logoApp.png")),
             Container(
               child: Text(
-                "Welcome: "+profil.getName(),
+                "Welcome: " + profil.getName(),
                 style: TextStyle(
                     fontSize: 30,
                     color: Colors.brown[400],
@@ -73,12 +71,12 @@ class _travel extends State<TravelStartPage> {
                   onPressed: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
-                          return CreateTripPage();
-                        }));
+                      return CreateTripPage();
+                    }));
                   },
                   style: ButtonStyle(
                       backgroundColor:
-                      MaterialStateProperty.all<Color>(Colors.brown)),
+                          MaterialStateProperty.all<Color>(Colors.brown)),
                 )),
             SizedBox(height: 30),
             Container(
@@ -89,12 +87,12 @@ class _travel extends State<TravelStartPage> {
                   onPressed: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
-                          return TripsPage();
-                        }));
+                      return TripsPage();
+                    }));
                   },
                   style: ButtonStyle(
                       backgroundColor:
-                      MaterialStateProperty.all<Color>(Colors.brown)),
+                          MaterialStateProperty.all<Color>(Colors.brown)),
                 )),
           ],
         ),

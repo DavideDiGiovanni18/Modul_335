@@ -6,7 +6,7 @@ class Profile extends ChangeNotifier{
     name ="Davide Di Giovanni";
   }
 
-  getName() {
+  String getName() {
     return name;
   }
 }
