@@ -130,7 +130,7 @@ class _travel extends State<CreateTripPage> {
                       borderSide: BorderSide(
                           width: 0.3, color: Colors.black), //<-- SEE HERE
                     ))),
-            SizedBox(height: 20),
+            SizedBox(height: 10),
             Expanded(
                 child: SizedBox(
                     width: double.infinity,
